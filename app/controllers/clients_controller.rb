@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = Client.all
+    clients = Client.all
 
     render json: @clients
   end
@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
 
   # POST /clients
   def create
-    @client = Client.new(client_params)
+    client = Client.new(client_params)
 
     if @client.save
       render json: @client, status: :created, location: @client

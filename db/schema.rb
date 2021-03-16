@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_010508) do
   create_table "events", force: :cascade do |t|
     t.string "date"
     t.time "time"
-    t.decimal "total"
+    t.decimal "total", precision: 8, scale: 2
     t.string "classification"
     t.string "status"
     t.integer "client_id"
