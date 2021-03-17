@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+# create_table "events", force: :cascade do |t|
+#     t.string "date"
+#     t.time "time"
+#     t.decimal "total", precision: 8, scale: 2
+#     t.string "classification"
+#     t.string "status"
+#     t.integer "client_id"
+#     t.datetime "created_at", precision: 6, null: false
+#     t.datetime "updated_at", precision: 6, null: false
+
+
+    Event.create(date: '03162021', time: '0230', total: '5490.86', classification: 'Wedding', status: "Tentative", client_id: '1')
