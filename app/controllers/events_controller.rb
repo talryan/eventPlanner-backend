@@ -3,9 +3,9 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    events = Event.all
+   @events = @client.events
 
-    render json: events
+    render json: @events
   end
 
   # GET /events/1
@@ -42,6 +42,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       event = Event.find(params[:id])
+    end
+
+    def set_client
+      @client = Client.find(params[:client_id])
     end
 
     # Only allow a list of trusted parameters through.

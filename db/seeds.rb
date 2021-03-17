@@ -20,3 +20,5 @@
 
 
     Event.create(date: '03162021', time: '0230', total: '5490.86', classification: 'Wedding', status: "Tentative", client_id: '1')
+
+    Client.create(first_name: 'Test', last_name: 'Test', phone_number: '123456789', email: 'test@test.com')

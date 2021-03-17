@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :update, :destroy]
+  # before_action :set_client, only: [:show, :update, :destroy]
 
   # GET /clients
   def index
@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/1
   def show
-    render json: client
+    render json: @client
   end
 
   # POST /clients
@@ -41,11 +41,12 @@ class ClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      client = Client.find(params[:id])
+      client = Client.find(params[:event_id]) 
     end
 
+    
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :phone_number)
+      params.require(:client).permit(:first_name, :last_name, :phone_number, :email)
     end
 end
