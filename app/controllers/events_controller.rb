@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
+  before_action :set_client
 
   # GET /events
   def index
@@ -10,7 +11,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    render json: event
+    render json: @event
   end
 
   # POST /events
@@ -26,22 +27,22 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
-    if event.update(event_params)
-      render json: event
+    if @event.update(event_params)
+      render json: @event
     else
-      render json: event.errors, status: :unprocessable_entity
+      render json: @event.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /events/1
   def destroy
-    event.destroy
+    @event.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      event = Event.find(params[:id])
+      @event = Event.find(params[:id])
     end
 
     def set_client
@@ -50,6 +51,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :date, :time, :total, :classification, :status, :client_id)
+      params.require(:event).permit(:date, :time, :total, :classification, :status, :client_id)
     end
 end

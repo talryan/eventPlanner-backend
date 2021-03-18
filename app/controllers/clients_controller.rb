@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  # before_action :set_client, only: [:show, :update, :destroy]
+  before_action :set_client, only: [:show, :update, :destroy]
 
   # GET /clients
   def index
@@ -26,27 +26,27 @@ class ClientsController < ApplicationController
 
   # PATCH/PUT /clients/1
   def update
-    if client.update(client_params)
-      render json: client
+    if @client.update(client_params)
+      render json: @client
     else
-      render json: client.errors, status: :unprocessable_entity
+      render json: @client.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /clients/1
   def destroy
-    client.destroy
+    @client.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      client = Client.find(params[:event_id]) 
+      @client = Client.find(params[:id]) 
     end
 
     
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :phone_number, :email)
+      params.require(:client).permit(:first_name, :last_name, :phone_number, :email, event_attributes: [:date, :time, :total, :classification, :status])
     end
 end

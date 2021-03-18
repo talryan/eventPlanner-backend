@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_010508) do
     t.string "classification"
     t.string "status"
     t.integer "client_id"
+    t.text "details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
