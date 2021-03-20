@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
-  before_action :set_client
+  # before_action :set_client
 
   # GET /events
   def index
-   @events = @client.events
+   @events = Event.all.alphabetical_order
 
     render json: @events
   end
@@ -51,6 +51,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :time, :total, :classification, :status, :client_id)
+      params.require(:event).permit(:event_name, :date, :time, :total, :classification, :status, :client_id)
     end
 end

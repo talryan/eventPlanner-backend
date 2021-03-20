@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   def index
     clients = Client.all
 
-    render json: clients
+    render json: clients, include: :events
   end
 
   # GET /clients/1
@@ -15,12 +15,12 @@ class ClientsController < ApplicationController
 
   # POST /clients
   def create
-    client = Client.new(client_params)
+    @client = Client.new(client_params)
 
-    if client.save
-      render json: client, status: :created, location: client
+    if @client.save
+      render json: @client, status: :created, location: @client
     else
-      render json: client.errors, status: :unprocessable_entity
+      render json: @client.errors, status: :unprocessable_entity
     end
   end
 
@@ -47,6 +47,6 @@ class ClientsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :phone_number, :email, event_attributes: [:date, :time, :total, :classification, :status])
+      params.require(:client).permit(:first_name, :last_name, :company_name, :phone_number, :email, event_attributes: [:event_name, :date, :time, :total, :classification, :status])
     end
 end

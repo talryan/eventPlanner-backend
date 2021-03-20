@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_010508) do
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "company_name"
     t.integer "phone_number"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_010508) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.string "event_name"
     t.string "date"
     t.time "time"
     t.decimal "total", precision: 8, scale: 2
