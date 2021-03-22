@@ -5,5 +5,5 @@ class Client < ApplicationRecord
     validates :email, presence: true, uniqueness: true, on:create
 
 
-    scope :alphabetical_order,  ->  {order(clients: :asc)}
+    scope :alphabetical_order,  ->  {order(last_name: :asc)}
 end

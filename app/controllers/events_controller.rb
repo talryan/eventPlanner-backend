@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-   @events = Event.all.alphabetical_order
+   @events = Event.all.chronological_order
 
     render json: @events
   end
@@ -17,6 +17,9 @@ class EventsController < ApplicationController
   # POST /events
   def create
     event = Event.new(event_params)
+    client = Client.find_by_id(event_params[:client_id])
+    event.client_id = client.id
+
 
     if event.save
       render json: event, status: :created, location: event
@@ -51,6 +54,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:event_name, :date, :time, :total, :classification, :status, :client_id)
+      params.require(:event).permit(:event_name, :date, :time, :total, :classification, :status, :client_id, :details)
     end
 end
